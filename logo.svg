@@ -1,7 +1,7 @@
 <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="25" cy="75" r="20" fill="green"/>
+    <rect x="50" y="0" width="200" height="200" fill="green"/>
     
-        <text x="100" y="100">
-          <tspan font-weight="bold" fill="black">JH</tspan>
+        <text x="50%" y="50%" text-anchor="middle">
+          <tspan font-weight="bold" font-size="32px" fill="black">JH</tspan>
         </text> 
     </svg>
