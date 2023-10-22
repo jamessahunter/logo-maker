@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const Text = require('./lib/text.js');
 const Shape = require('./lib/shape.js');
+const fs=require('fs');
+const { default: generate } = require('@babel/generator');
 
 questions=[
     {
@@ -40,12 +42,28 @@ function promptUser() {
     .prompt(questions)
     .then((response) => {
       //calls the write to file function
-      console.log(response);
+    //   console.log(response);
         // const logoText = new Text(response.text);
         const logoShape =new Shape(response.text,response.textColor,response.shape,response.bgColor);
+        console.log(logoShape);
+        writeToFile("logo.svg",logoShape)
     //   writeToFile("READMEnew.md",response)
     }
     );
 }
   
 init();
+
+function writeToFile(fileName,data){
+    fs.writeFile(fileName,generateLogo(data), (err) =>
+    // checks for an error if an error is found it gets logged to the console
+    // else it console logs the that the readme has been generated
+    err ? console.error(err) : console.log("Generated logo.svg"));
+}
+
+function generateLogo(data){
+    return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    ${data.shape}
+    ${data.text} 
+    </svg>`
+}
