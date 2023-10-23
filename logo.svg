@@ -1,7 +1,7 @@
 <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="150" cy="100" r="100" fill="green"/>
+  <polygon points="150, 0 250, 173.205 50, 173.205" fill="yellow"/>
     
         <text x="50%" y="50%" text-anchor="middle" dy="1em">
-          <tspan font-weight="bold" font-size="64px" fill="black">JH</tspan>
+          <tspan font-weight="bold" font-size="64px" fill="orange">A</tspan>
         </text>
     </svg>

@@ -44,29 +44,21 @@ function promptUser() {
     .prompt(questions)
     .then((response) => {
       //calls the write to file function
-        // console.log(response.text);
-        // const logoText = new Text(response.text);
-        const logoShape =new Shape(response.text,response.textColor);
         if (response.shape==="triangle"){
           const shape=new Triangle(response.text,response.textColor,response.bgColor);
           shape.render=shape.render();
           writeToFile("logo.svg",shape);
-          console.log("tri" +shape);
         }
         else if (response.shape==="square"){
           const shape=new Square(response.text,response.textColor,response.bgColor);
           shape.render=shape.render();
           writeToFile("logo.svg",shape);
-          
-          console.log("sq" +shape);
         }
         else if (response.shape==="circle"){
           const shape=new Circle(response.text,response.textColor,response.bgColor);
           shape.render=shape.render();
           writeToFile("logo.svg",shape);
-          console.log(shape);
         }
-        // console.log(logoShape);
 
     }
     );
@@ -82,7 +74,6 @@ function writeToFile(fileName,data){
 }
 
 function generateLogo(data){
-  console.log("logo", data);
     return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
   ${data.render}
     ${data.text}
