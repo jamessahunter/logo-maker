@@ -1,8 +1,10 @@
 const inquirer = require('inquirer');
 const Text = require('./lib/text.js');
-const Shape = require('./lib/shape.js');
+const {Shape,Triangle,Square,Circle} = require('./lib/shape.js');
+// const Triangle = require('./lib/shape.js');
+// const Square = require('./lib/shape.js');
+// const Circle = require('./lib/shape.js');
 const fs=require('fs');
-const { default: generate } = require('@babel/generator');
 
 questions=[
     {
@@ -42,12 +44,30 @@ function promptUser() {
     .prompt(questions)
     .then((response) => {
       //calls the write to file function
-    //   console.log(response);
+        // console.log(response.text);
         // const logoText = new Text(response.text);
-        const logoShape =new Shape(response.text,response.textColor,response.shape,response.bgColor);
-        console.log(logoShape);
-        writeToFile("logo.svg",logoShape)
-    //   writeToFile("READMEnew.md",response)
+        const logoShape =new Shape(response.text,response.textColor);
+        if (response.shape==="triangle"){
+          const shape=new Triangle(response.text,response.textColor,response.bgColor);
+          shape.render=shape.render();
+          writeToFile("logo.svg",shape);
+          console.log("tri" +shape);
+        }
+        else if (response.shape==="square"){
+          const shape=new Square(response.text,response.textColor,response.bgColor);
+          shape.render=shape.render();
+          writeToFile("logo.svg",shape);
+          
+          console.log("sq" +shape);
+        }
+        else if (response.shape==="circle"){
+          const shape=new Circle(response.text,response.textColor,response.bgColor);
+          shape.render=shape.render();
+          writeToFile("logo.svg",shape);
+          console.log(shape);
+        }
+        // console.log(logoShape);
+
     }
     );
 }
@@ -62,8 +82,9 @@ function writeToFile(fileName,data){
 }
 
 function generateLogo(data){
+  console.log("logo", data);
     return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    ${data.shape}
-    ${data.text} 
+  ${data.render}
+    ${data.text}
     </svg>`
 }
