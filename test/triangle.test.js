@@ -1,5 +1,5 @@
 const {Triangle} = require('../lib/shape.js');
-
+//same a circle but for triangle
 describe("Triangle",()=>{
     it('should render the template literal to make a triangle of a given color',()=>{
         const triangle = new Triangle("","","blue");

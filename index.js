@@ -1,7 +1,9 @@
+//imports constructors
 const inquirer = require('inquirer');
 const {Triangle,Square,Circle} = require('./lib/shape.js');
 const fs=require('fs');
 
+// array of questions
 questions=[
     {
         type: 'input',
@@ -39,10 +41,12 @@ function promptUser() {
   inquirer
     .prompt(questions)
     .then((response) => {
-      //calls the write to file function
+      //calls the class depending on the shape
         if (response.shape==="triangle"){
           const shape=new Triangle(response.text,response.textColor,response.bgColor);
+          //calls the render function
           shape.render=shape.render();
+          //writes to file
           writeToFile("logo.svg",shape);
         }
         else if (response.shape==="square"){
@@ -69,6 +73,7 @@ function writeToFile(fileName,data){
     err ? console.error(err) : console.log("Generated logo.svg"));
 }
 
+//generates the template literal for the logo
 function generateLogo(data){
     return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
   ${data.render}
